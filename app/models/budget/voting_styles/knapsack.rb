@@ -14,4 +14,12 @@ class Budget::VotingStyles::Knapsack < Budget::VotingStyles::Base
   def formatted_amount_available(heading)
     ballot.budget.formatted_amount(amount_available(heading))
   end
+
+  def formatted_amount_spent(heading)
+    ballot.budget.formatted_amount(amount_spent(heading))
+  end
+
+  def formatted_amount_limit(heading)
+    ballot.budget.formatted_heading_price(heading)
+  end
 end
