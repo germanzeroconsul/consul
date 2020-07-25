@@ -26,10 +26,10 @@ section "Creating DEMO Participatory Budgets" do
   heading.investments.create!(title: "Canine Parks in each district",
                               description: "<p>Areas of a minimum area of 500 square meters, with a wire fence of 2 meters high (minimum) where dogs can be loose, run and play at any time of day. With complements such as litter bins (for excrement and other waste), fountains, benches and shade (trees, \"tejadillo\", etc). Without prejudice to the schedule that can go loose dogs in the parks (ie, that this is still kept in the park or garden that this canine area) and can also enjoy it considered potentially dangerous. In each district where there is no canine zone or if this exists and needs improvements, make them (broken fence, missing accessories, etc.). With periodical maintenance of the town hall (emptying of litter bins, care of the vegetation, various arrangements, etc).</p>\r\n",
                               feasibility: "feasible",
-                              valuation_finished: true,
+                              valuation_finished: false,
                               tag_list: "Sustainability,Sports,environment",
                               price: 20000000,
-                              selected: true,
+                              selected: false,
                               author: users.sample,
                               skip_map: "1",
                               terms_of_service: "1")
