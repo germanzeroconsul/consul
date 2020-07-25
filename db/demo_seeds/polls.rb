@@ -13,6 +13,11 @@ section "Creating DEMO polls" do
                       geozone_restricted: false,
                       created_at: "26/07/2019")
 
+  Image.create!(imageable: poll,
+                title: poll.name,
+                attachment: File.new(Rails.root.join("db", "demo_seeds", "images", "widgets", "decide-which-should-be-the-new-square.jpg")),
+                user_id: 1)
+
   question = poll.questions.create!(title: "Do you consider it necessary to remodel the square?",
                                     author_id: 1,
                                     created_at: "26/07/2019",
