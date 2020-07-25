@@ -2,7 +2,6 @@ require_dependency "poll/answer"
 require_dependency "poll/question/answer"
 
 section "Creating DEMO polls" do
-
   poll = Poll.create!(name: "Refurbishment of the North Square",
                       slug: "refurbishment-of-the-north-square",
                       summary: "Decided now what the Town Hall is going to do with this square.\r\nThis is one of the 10 squares that have been selected for a possible remodeling to improve its use for the population. There has been a participatory process that ends now in this final phase of voting. It decides with respect to the squares if they should be remodeled or not, and for those that mostly decide to remodel which will be the projects to carry out.",
@@ -13,10 +12,12 @@ section "Creating DEMO polls" do
                       geozone_restricted: false,
                       created_at: "26/07/2019")
 
-  Image.create!(imageable: poll,
-                title: poll.name,
-                attachment: File.new(Rails.root.join("db", "demo_seeds", "images", "widgets", "decide-which-should-be-the-new-square.jpg")),
-                user_id: 1)
+  Image.create!(
+    imageable: poll,
+    title: poll.name,
+    attachment: File.new(Rails.root.join("db", "demo_seeds", "images", "widgets", "decide-which-should-be-the-new-square.jpg")),
+    user: User.first
+  )
 
   question = poll.questions.create!(title: "Do you consider it necessary to remodel the square?",
                                     author_id: 1,
@@ -59,11 +60,19 @@ section "Creating DEMO polls" do
                                              given_order: 1)
   document = File.new(Rails.root.join("db", "demo_seeds", "documents", "polls", "light-of-the-city.pdf"))
   answer.documents.create!(title: "Project report", attachment: document, user_id: 1)
-  answer.videos.create!(title: "Light of the City", url: "https://www.youtube.com/watch?v=48SqdGXukbg")
+  answer.videos.create!(title: answer.title, url: "https://www.youtube.com/watch?v=48SqdGXukbg")
   users.first(6).each do |user|
     Poll::Answer.create!(question_id: question.id,
                          author: user,
                          answer: answer.title)
+  end
+
+  3.times do |number|
+    answer.images.create!(
+      title: answer.title,
+      attachment: File.new(Rails.root.join("db", "demo_seeds", "images", "polls", "light-of-the-city-#{number + 1}.jpg")),
+      user: User.first
+    )
   end
 
   answer = question.question_answers.create!(title: "Square with History",
@@ -71,6 +80,15 @@ section "Creating DEMO polls" do
                                            given_order: 2)
   document = File.new(Rails.root.join("db", "demo_seeds", "documents", "polls", "square-with-history.pdf"))
   answer.documents.create!(title: "Project report", attachment: document, user_id: 1)
+
+  3.times do |number|
+    answer.images.create!(
+      title: answer.title,
+      attachment: File.new(Rails.root.join("db", "demo_seeds", "images", "polls", "square-with-history-#{number + 1}.jpg")),
+      user: User.first
+    )
+  end
+
   users.last(4).each do |user|
     Poll::Answer.create!(question_id: question.id,
                          author: user,
