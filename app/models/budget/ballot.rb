@@ -65,7 +65,8 @@ class Budget
     end
     delegate :amount_available, :amount_available_info, :amount_spent, :amount_spent_info,
              :change_vote_info, :enough_resources?, :formatted_amount_available, :formatted_amount_limit,
-             :formatted_amount_spent, :not_enough_resources_error, :reason_for_not_being_ballotable,
+             :formatted_amount_spent, :formatted_price, :not_enough_resources_error, :percentage_spent,
+             :reason_for_not_being_ballotable,
              to: :voting_style
 
     private
